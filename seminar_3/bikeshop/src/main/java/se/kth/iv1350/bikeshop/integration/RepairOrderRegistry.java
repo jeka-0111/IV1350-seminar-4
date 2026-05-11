@@ -56,21 +56,4 @@ public class RepairOrderRegistry {
         repairOrderList.add(repairOrder); // Add to our in-memory list (replaces saving to a real database)
     }
 
-    /* 
-    /**
-     * Adds a repair task to the repair order with the specified ID.
-     *
-     * @param repairOrderId The ID of the repair order to update.
-     * @param repairTask    The {@link RepairTaskDTO} to add.
-     * @return The added {@link RepairTaskDTO}.
-     
-    public RepairTaskDTO addRepairTask(String repairOrderId, RepairTaskDTO repairTask) {
-        RepairOrderDTO existing = findRepairOrder(repairOrderId); // Reuse findRepairOrder — avoids duplicated code (kap 6.4)
-        if (existing != null) {           // Only add if the repair order actually exists
-            existing.addRepairTask(repairTask); // Delegate to RepairOrderDTO to add the task
-        }
-        return repairTask; // Return the task so the caller can confirm what was added
-    }
-    */
-
 }

@@ -51,7 +51,7 @@ public class RepairOrder{
     }
 
     //getter for repairstasks list
-    public List<RepairTaskDTO> getrepairTasks(){
+    public List<RepairTaskDTO> getRepairTasks(){
         return repairTasks;
     } 
 

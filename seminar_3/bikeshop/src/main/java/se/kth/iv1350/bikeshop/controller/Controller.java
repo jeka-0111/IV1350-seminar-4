@@ -6,6 +6,7 @@ import se.kth.iv1350.bikeshop.dto.DiagnosticReportDTO;
 import se.kth.iv1350.bikeshop.dto.RepairOrderDTO;
 import se.kth.iv1350.bikeshop.dto.RepairTaskDTO;
 import se.kth.iv1350.bikeshop.integration.Printer;
+import se.kth.iv1350.bikeshop.integration.PrinterParameters;
 import se.kth.iv1350.bikeshop.integration.RegistryCreator;
 import se.kth.iv1350.bikeshop.model.DiagnosticReport;
 import se.kth.iv1350.bikeshop.model.RepairOrder;
@@ -21,6 +22,9 @@ public class Controller {
     private final RegistryCreator registryCreator;
     private final Printer printer;
     private RepairOrder currentRepairOrder;
+    private CustomerDTO customer;
+    private BikeDTO bike;
+    private DiagnosticReport diagnosticReport;
 
     /**
      * Creates a new instance of the controller.
@@ -80,7 +84,7 @@ public class Controller {
      * 
      */
     public RepairTaskDTO addRepairTask(String name, String description, double cost) {
-        RepairTaskDTO task = new RepairTaskDTO(name, description, cost, true);
+        RepairTaskDTO task = new RepairTaskDTO(name, description, cost);
         return currentRepairOrder.addRepairTask(task);
     }
 
@@ -88,14 +92,17 @@ public class Controller {
      * Marks the current repair order as accepted or rejected.
      * Sends the order to the printer if it is accepted.
      *
-     * @param accepted {@code true} if the customer accepts, {@code false} if rejected.
-     * @return The acceptance status that was set.
+     * @param state refers to an enumeration: ACCEPTED, REJECTED, NEWLY_CREATED, READY_FOR_APPROVAL, decided by the user in view.
+     * 
      */
-    //OBS vi ersätter setOrderStatus med 4 metoder: acceptRepairorder, rejectRepairOrder
-    public void setOrderStatus (RepairOrderState state) {
-        currentRepairOrder.setState(state);
-        printer.printRepairOrder(currentRepairOrder.getRepairOrderDTO(), state);
+    public void setOrderStatus(RepairOrderState state) {
+    if (state == RepairOrderState.ACCEPTED) {
+        currentRepairOrder.setStateAccepted();
+        // skapa PrinterParameters och anropa printer
+    } else if (state == RepairOrderState.REJECTED) {
+        currentRepairOrder.setStateRejected();
     }
+}
 
     public DiagnosticReport addDiagnosticReport(){
         //anrop till model med en getter för att kunna se resultat, läsa vad model har beräknat 
@@ -106,11 +113,15 @@ public class Controller {
     /**
      * Printer is only triggered at the STATE change to accepted
      */
-    public void printRepairOrder(RepairOrderDTO repairOrder, RepairOrderState state) {
+    public void printRepairOrders(RepairOrderDTO repairOrder, RepairOrderState state) {
     if (state == RepairOrderState.ACCEPTED) {
         // skriv ut
         //call on method for prnter in integration
         //somewhere: set state to PRINTED (?) after it has been printed in order to not trigger the printer method more than once
-        }    
+        PrinterParameters param = new PrinterParameters(repairOrder, currentRepairOrder, null, null, null, null);
+        Printer print = new Printer();
+        print.printRepairOrder(param); 
+        
+        }
     }
 }
