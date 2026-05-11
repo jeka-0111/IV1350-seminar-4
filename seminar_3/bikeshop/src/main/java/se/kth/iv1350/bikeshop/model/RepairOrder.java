@@ -3,6 +3,10 @@ package se.kth.iv1350.bikeshop.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import se.kth.iv1350.bikeshop.dto.BikeDTO;
+import se.kth.iv1350.bikeshop.dto.CustomerDTO;
+import se.kth.iv1350.bikeshop.dto.DiagnosticReportDTO;
+import se.kth.iv1350.bikeshop.dto.RepairOrderDTO;
 import se.kth.iv1350.bikeshop.dto.RepairTaskDTO;
 
 /**
@@ -22,41 +26,30 @@ public class RepairOrder{
     //list of repairtasks
     private List<RepairTaskDTO > repairTasks;
     //TotalCostOfRepairTasks är et fält som model behöver för att det vi skapar ska kunna fortsätta existera så länge objektet finns
-    private double TotalCostOfRepairTasks;
+    private double totalCostOfRepairTasks;
 
     private RepairOrderState state;
 
       
     //konstruktor av RO
-    public RepairOrder (List<RepairTaskDTO> repairTaskList){
+    public RepairOrder (RepairOrderDTO repairOrderDTO, 
+                        CustomerDTO customer, 
+                        BikeDTO bike, 
+                        DiagnosticReportDTO problemDescription, 
+                        int date){
         this.repairTasks = new ArrayList<>();
-        this.TotalCostOfRepairTasks = 0.0; 
+        this.totalCostOfRepairTasks = 0.0; 
     }
 
     //getter method for totalCost
-    public double TotalCostOfRepairTasks (){
-        return TotalCostOfRepairTasks;
+    public double getTotalCostOfRepairTasks (){
+        return totalCostOfRepairTasks;
     }
 
     //getter for repairstasks list
     public List<RepairTaskDTO> getrepairTasks(){
         return repairTasks;
     } 
-    
-        
-    /**
-    *Changes the state of the repairOrder to accepted 
-    * 
-    * Marks accepted order as true,
-    * alternative flow as false or handled via exception later
-    *
-    *FÖR ÖKAD TYDLIGHET: Ta bort setStae och ersätt med specifika metoder
-
-    */
-    //public void setState(RepairOrderState state) {
-    //    this.state = state;
-    //}
-    
     
     /**
      * This method does not take any paramters, instead it changes the field of the repairorder,
@@ -81,20 +74,13 @@ public class RepairOrder{
     }
 
     /**
-     * adds a cost to the task and calculates value each time
-     * @param addedRepairTask
-     */
-    public void addRepairTaskCost(RepairTaskDTO addedRepairTask) {
-        TotalCostOfRepairTasks += addedRepairTask.getCost();    // Automatically update total cost when task is added
-
-       // behöver metoden köra addedRepairTask?
-       // addedRepairTask;
-       
-    }
-    public void addRepairTask(RepairTaskDTO addRepairTask) {
-        //se över diagram - returnerar inget : sparar i en lista
-        //kod saknas
-        //behöver kollas upp, funktionalitet  med annan kod och uppdatera diagram 
+     * Adds a repairtask DTO to the arraylist repairTasks (containing RepairTaskDTO)
+     * and adds the cost
+     * @param newTask
+     */  
+    public void addRepairTask(RepairTaskDTO newTask) {
+        repairTasks.add(newTask);
+        totalCostOfRepairTasks += newTask.getCost();    // Automatically update total cost when task is added
     }
 
-}
+} 

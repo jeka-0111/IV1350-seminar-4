@@ -19,8 +19,10 @@ public class RepairOrderDTO {
     private final String problemDescription;    // final = problem description never changes
     private final int date;
     private int estimatedCompletionDate;
-    private double totalCost;                   // NOT final = changes when repair tasks are added
-    private RepairOrderState STATE;                       // NOT final = changes when order is accepted/rejected
+    //private RepairOrderState state;                       // NOT final = changes when order is accepted/rejected
+    //private CustomerDTO customerDTO;
+    //private BikeDTO bikeDTO;
+    
    
     /**
      * Creates a new instance with the specified repair order data
@@ -30,18 +32,18 @@ public class RepairOrderDTO {
      * @param date                      The date where bike was recieved
      * @param estimatedCompletitionDate Estimated date for completing bike reparation
      * @param RepairOrderState                  The current state of the repair order
-     * @param totalCost                 The total cost of all repair tasks
      */
 
-    public RepairOrderDTO(CustomerDTO customerDTO, BikeDTO bikeDTO, String repairOrderId, String problemDescription, int date, int estimatedCompletitionDate, RepairOrderState STATE, double totalCost) {
+    public RepairOrderDTO(String repairOrderId, String problemDescription, int date, int estimatedCompletitionDate, RepairOrderState STATE) {
         this.repairOrderId = repairOrderId;         // Store the unique order ID
         this.problemDescription = problemDescription; // Store the reported problem
         this.date = date;
         this.estimatedCompletionDate = estimatedCompletitionDate;
-        //this.ACCEPTED = ACCEPTED;                       // Store initial state (e.g. "created")
-        this.totalCost = totalCost;                  // Store initial cost (usually 0.0 at creation)
-    }
+        //this.customerDTO = customerDTO;
+        //this.bikeDTO = bikeDTO;
+        //this.state = state;
 
+    }
 
     /** @return The unique repair order ID. */
     public String getRepairOrderId(){
@@ -58,18 +60,9 @@ public class RepairOrderDTO {
         return date;
     }
 
-    /** @return The total cost of all repair tasks. */
-    public double getTotalCost() {
-        return totalCost;
-    }
-
      /** @return The total cost of all repair tasks. */
     public int getEstimatedCompletionDate() {
         return estimatedCompletionDate;
-    }
-    /** @return The current state of the repair order. */
-       public RepairOrderState getSTATE() {
-        return STATE;
     }
 
 }
