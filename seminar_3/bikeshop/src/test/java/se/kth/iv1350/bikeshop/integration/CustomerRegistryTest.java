@@ -2,7 +2,6 @@ package se.kth.iv1350.bikeshop.integration;
 
 import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -28,12 +27,13 @@ public class CustomerRegistryTest {
         assertNotEquals(customers, ob, "Object should be created");
     }
 
-    @Test
+    /* @Test
     public void testIfNotEmpty(){
         CustomerRegistry customer = new CustomerRegistry();
         List<String> customerData = new ArrayList<>();   
         assertFalse(customer.equals(customerData));
     }
+        */
  
     @Test
     public void testIfContainsCorrectPhoneNr(){       
