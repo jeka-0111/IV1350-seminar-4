@@ -74,9 +74,11 @@ public class View {
         System.out.println("Total cost so far: " + order.getTotalCost() + " kr");
 
         System.out.println("\n--- Step 5: Customer accepts repair order ---");
-        //handel enum here
-       // RepairOrderState accepted = this.RepairOrder.getState(state);
-        System.out.println("Accepted    : " + accepted);
+
+        //behöver hämta en instans av aktuell repairOrder för att fungera.
+        RepairOrder currentOrder = controller.getRepairOrder;
+        RepairOrderState state = currentOrder.getState();
+        System.out.println("Accepted    : " + state);
     }
 }
 //
