@@ -29,7 +29,7 @@ public class RepairOrder{
     private double totalCostOfRepairTasks;
 
     private RepairOrderState state;
-    private String repairOrderId;
+    private String repairOrderId; 
     private String problemDescription;
     private int date;
     private int estimatedCompletitionDate;
@@ -55,6 +55,10 @@ public class RepairOrder{
         return repairTasks;
     } 
 
+    //NY getter för state
+    public RepairOrderState getState (){
+        return state;
+    }
 
     public RepairOrderDTO getRepairOrderDTO(){
 

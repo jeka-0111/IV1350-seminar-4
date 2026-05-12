@@ -41,7 +41,7 @@ public class View {
         System.out.println("Customer name  : " + customer.getName());
         System.out.println("Customer phone : " + customer.getPhoneNr());
         System.out.println("Customer email : " + customer.getEmail());
-
+ 
         System.out.println("\n--- Step 2: Search for bike ---");
         BikeDTO bike = controller.searchBike("0701234567");
         System.out.println("Bike brand  : " + bike.getBrand());
@@ -79,3 +79,4 @@ public class View {
         System.out.println("Accepted    : " + accepted);
     }
 }
+//

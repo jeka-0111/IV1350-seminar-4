@@ -19,9 +19,9 @@ public class RepairOrderDTO {
     private final String problemDescription;    // final = problem description never changes
     private final int date;
     private int estimatedCompletionDate;
-    //private RepairOrderState state;                       // NOT final = changes when order is accepted/rejected
-    //private CustomerDTO customerDTO;
-    //private BikeDTO bikeDTO;
+    private RepairOrderState state;                       // NOT final = changes when order is accepted/rejected
+    private CustomerDTO customerDTO;
+    private BikeDTO bikeDTO;
     
    
     /**
@@ -30,7 +30,7 @@ public class RepairOrderDTO {
      * @param repairOrderId             The unique ID of the repair order
      * @param problemDescription        A description of the reported problem
      * @param date                      The date where bike was recieved
-     * @param estimatedCompletitionDate Estimated date for completing bike reparation
+     * @param estimatedCompletitionDate Estimated date for completing bike reparation 
      * @param RepairOrderState                  The current state of the repair order
      */
 
@@ -39,9 +39,9 @@ public class RepairOrderDTO {
         this.problemDescription = problemDescription; // Store the reported problem
         this.date = date;
         this.estimatedCompletionDate = estimatedCompletitionDate;
-        //this.customerDTO = customerDTO;
-        //this.bikeDTO = bikeDTO;
-        //this.state = state;
+        this.customerDTO = customerDTO;
+        this.bikeDTO = bikeDTO;
+        this.state = state;
 
     }
 

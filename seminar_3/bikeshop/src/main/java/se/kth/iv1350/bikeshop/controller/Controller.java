@@ -90,7 +90,7 @@ public class Controller {
     }
 
     /**
-     * Marks the current repair order as accepted or rejected.
+     * Marks the current repair order as accepted or rejected. 
      * Sends the order to the printer if it is accepted.
      *
      * @param state refers to an enumeration: ACCEPTED, REJECTED, NEWLY_CREATED, READY_FOR_APPROVAL, decided by the user in view.
