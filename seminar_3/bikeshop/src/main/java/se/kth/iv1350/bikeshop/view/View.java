@@ -20,7 +20,6 @@ import se.kth.iv1350.bikeshop.model.RepairOrder;
 public class View {
 
     private final Controller controller;
-    private final RepairOrder repairOrders = new RepairOrder(null, null, null, null, 0);
 
     /**
      * Creates a new instance that delegates all calls to the specified controller.
@@ -49,7 +48,7 @@ public class View {
         System.out.println("Serial nr   : " + bike.getSerialNr());
 
         System.out.println("\n--- Step 3: Create repair order ---");
-        RepairOrderDTO order = controller.createRepairOrder(repairOrderDTO, customer,  bike, problemDescription, date , bike, "Battery does not charge");
+        RepairOrderDTO order = controller.createRepairOrder(customer,  bike, customersProblemDescription, date);
         System.out.println("Order ID    : " + order.getRepairOrderId());
         System.out.println("Problem     : " + order.getProblemDescription());
 
