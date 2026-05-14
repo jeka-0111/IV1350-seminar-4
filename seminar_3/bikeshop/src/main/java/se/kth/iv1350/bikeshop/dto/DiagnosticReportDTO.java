@@ -24,6 +24,6 @@ public class DiagnosticReportDTO {
      * @return the description of the problem with the bike
      */
     public String getDiagnosticReport() {
-        return diagnosticReportProblemDescription;
+        return diagnosticReport;
     }   
 }
