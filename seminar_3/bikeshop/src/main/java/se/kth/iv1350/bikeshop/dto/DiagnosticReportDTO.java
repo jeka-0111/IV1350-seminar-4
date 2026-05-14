@@ -6,7 +6,7 @@ package se.kth.iv1350.bikeshop.dto;
 
 
 public class DiagnosticReportDTO {
-    private String diagnosticReportProblemDescription;
+    private String diagnosticReport;
 
     //what tasks to be fixed.
 
@@ -15,15 +15,15 @@ public class DiagnosticReportDTO {
      * @param problemDescription description of problem with the bike.
      */
 
-    public DiagnosticReportDTO(String diagnosticReportProblemDescription){
-        this.diagnosticReportProblemDescription = diagnosticReportProblemDescription;
+    public DiagnosticReportDTO(String diagnosticReport){
+        this.diagnosticReport = diagnosticReport;
     }
 
     /**
      * Get method for problem description
      * @return the description of the problem with the bike
      */
-    public String getDiagnosticReportProblemDescription() {
+    public String getDiagnosticReport() {
         return diagnosticReportProblemDescription;
     }   
 }
