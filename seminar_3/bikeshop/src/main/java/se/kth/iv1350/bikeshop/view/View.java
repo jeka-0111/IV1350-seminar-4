@@ -3,6 +3,7 @@ package se.kth.iv1350.bikeshop.view;
 import se.kth.iv1350.bikeshop.controller.Controller;
 import se.kth.iv1350.bikeshop.dto.BikeDTO;
 import se.kth.iv1350.bikeshop.dto.CustomerDTO;
+import se.kth.iv1350.bikeshop.dto.DiagnosticReportDTO;
 import se.kth.iv1350.bikeshop.dto.RepairOrderDTO;
 import se.kth.iv1350.bikeshop.dto.RepairTaskDTO;
 import se.kth.iv1350.bikeshop.integration.RepairOrderRegistry;
@@ -54,9 +55,8 @@ public class View {
 
         
         System.out.println("\n--- Step 4: Add Diagnostic Report---");
-        RepairOrderDTO order = controller.createRepairOrder(customer,  bike, problemDescription, date);
-        System.out.println("Order ID    : " + order.getRepairOrderId());
-        System.out.println("Problem     : " + order.getProblemDescription());
+        DiagnosticReportDTO report = controller.addDiagnosticReport(report);
+        System.out.println("Diagnostic Report    : " + report.getDiagnosticReport());
 
         double cost = repairOrders.getTotalCostOfRepairTasks();
 
