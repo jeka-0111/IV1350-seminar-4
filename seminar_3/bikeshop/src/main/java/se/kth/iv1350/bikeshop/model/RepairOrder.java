@@ -3,6 +3,8 @@ package se.kth.iv1350.bikeshop.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.tools.Diagnostic;
+
 import se.kth.iv1350.bikeshop.dto.BikeDTO;
 import se.kth.iv1350.bikeshop.dto.CustomerDTO;
 import se.kth.iv1350.bikeshop.dto.DiagnosticReportDTO;  
@@ -26,13 +28,14 @@ public class RepairOrder{
     //list of repairtasks
     private List<RepairTaskDTO > repairTasks;
     //TotalCostOfRepairTasks är et fält som model behöver för att det vi skapar ska kunna fortsätta existera så länge objektet finns
+    //skapar fält
     private double totalCostOfRepairTasks;
     private CustomerDTO customer;
     private BikeDTO bike;
     private String customersProblemDescription;
     private String date;
     private RepairOrderState state;
-
+    private DiagnosticReport diagnosticReport;
       
     public RepairOrder(CustomerDTO customer, BikeDTO bike, String customersProblemDescription, String date) {
         this.customer = customer;
@@ -52,9 +55,12 @@ public class RepairOrder{
      * @param diagnosticReportProblemDescription the problem description from the diagnostic report
      * @param repairTasks the list of repair tasks to be added to the repair order
      */
-    public void updateRepairOrder(String diagnosticReportProblemDescription, List<RepairTaskDTO> repairTasks){
+/*
+replaced by addDiagnosticReport and addRepairstasks methods!!!
+public void updateRepairOrder(String diagnosticReportProblemDescription, List<RepairTaskDTO> repairTasks){
         
     }
+    */
 
     //getter method for totalCost
     public double getTotalCostOfRepairTasks (){
@@ -106,6 +112,12 @@ public class RepairOrder{
     public void addRepairTask(RepairTaskDTO newTask) {
         repairTasks.add(newTask);
         totalCostOfRepairTasks += newTask.getCost();    // Automatically update total cost when task is added
+    }
+
+    public DiagnosticReportDTO addDiagnosticReportToRepairOrder(RepairOrderDTO repairOrderDTO, String newReport) {
+        //new object (instans)
+        diagnosticReport = new DiagnosticReport(); 
+        return diagnosticReport.addDiagnosticReport(newReport);
     }
 
 }

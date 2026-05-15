@@ -31,7 +31,8 @@ public class Controller {
 
 
 
-    //RepairOrderDTO repairOrderDTO = new // Hur görs detta? Går ej att kalla på get problemdescription eftersom 
+    RepairOrderDTO repairOrderDTO = new RepairOrderDTO();
+    // Hur görs detta? Går ej att kalla på get problemdescription eftersom 
     // RepairOrderDTO inte är statisk (kolla rad 115 i samma fil)
 
     /**
@@ -82,6 +83,7 @@ public class Controller {
         return dto;
     }
 
+    
     /**
      * problem: The method addDiagnosticReport(DiagnosticReportDTO) is undefined for the type RepairOrder
      * cannot find symbol
@@ -90,9 +92,9 @@ public class Controller {
      * @param report is the diagnostic report entered by technician
      * @return
      */
-    public DiagnosticReportDTO addDiagnosticReport(String report){
+    public DiagnosticReportDTO addDiagnosticReport(RepairOrderDTO dto, String report){
         DiagnosticReportDTO reportDTO = new DiagnosticReportDTO(report);
-        currentRepairOrder.addDiagnosticReport(reportDTO);
+        currentRepairOrder.addDiagnosticReportToRepairOrder(reportDTO);
         return reportDTO;
     }
 
