@@ -1,5 +1,6 @@
 package se.kth.iv1350.bikeshop.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,16 +29,14 @@ public class RepairOrder{
     //TotalCostOfRepairTasks är et fält som model behöver för att det vi skapar ska kunna fortsätta existera så länge objektet finns
     //skapar fält
     private double totalCostOfRepairTasks;
-    private CustomerDTO customer;
-    private BikeDTO bike;
     private String customersProblemDescription;
-    private int date;
+    private LocalDate date;
     private int estimatedCompletionDate = 0;
     private String repairOrderId;
     private RepairOrderState state;
     private DiagnosticReport diagnosticReport;
 
-    public RepairOrder(CustomerDTO customer, BikeDTO bike, String customersProblemDescription, int date) {
+    public RepairOrder(CustomerDTO customer, BikeDTO bike, String customersProblemDescription, LocalDate date) {
         this.customer = customer;
         this.bike = bike;
         this.customersProblemDescription = customersProblemDescription;
