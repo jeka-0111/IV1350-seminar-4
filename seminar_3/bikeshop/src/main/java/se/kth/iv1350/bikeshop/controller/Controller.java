@@ -45,8 +45,9 @@ public class Controller {
      *
      * @param phoneNr The phone number to search for.
      * @return The found {@link CustomerDTO}, or {@code null} if no match exists.
+     * @throws PhoneNr
      */
-    public CustomerDTO searchCustomer(String phoneNr) throws PhoneNrNotFoundException{
+    public CustomerDTO searchCustomer(String phoneNr) throws PhoneNrNotFoundException, DatabaseFailureException{
         try{  
             return registryCreator.getCustomerRegistry().findCustomer(phoneNr);
         }catch(UnknownPhoneNrException e){
@@ -130,6 +131,10 @@ public class Controller {
         // skapa PrinterParameters och anropa printer
     } else if (state == RepairOrderState.REJECTED) {
         currentRepairOrder.setStateRejected();
+    } else if(state == RepairOrderState.NEWLY_CREATED){
+        currentRepairOrder.setStateNewlyCreated();
+    }else if(state == RepairOrderState.READY_FOR_APPROVAL){
+        currentRepairOrder.setStateReadyForApproval();
     }
 }
 
