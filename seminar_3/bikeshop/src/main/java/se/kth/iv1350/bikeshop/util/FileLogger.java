@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class FileLogger {
+public class FileLogger{
     private PrintWriter logStream;
 
     public FileLogger() {
