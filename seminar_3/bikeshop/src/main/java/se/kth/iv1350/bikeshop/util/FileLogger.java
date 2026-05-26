@@ -4,7 +4,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-public class FileLogger {
+public class FileLogger implements Logger {
     private PrintWriter logStream;
 
     public FileLogger() {
@@ -14,5 +14,10 @@ public class FileLogger {
             System.out.println("COULD NOT WRITE TO LOG");
             ioException.printStackTrace(logStream);
         }
+    }
+
+    @Override
+    public void log(String message) {
+        logStream.println(message);
     }
 }

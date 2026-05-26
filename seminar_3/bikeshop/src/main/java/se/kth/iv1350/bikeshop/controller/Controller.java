@@ -14,7 +14,7 @@ import se.kth.iv1350.bikeshop.integration.RegistryCreator;
 import se.kth.iv1350.bikeshop.integration.UnknownPhoneNrException;
 import se.kth.iv1350.bikeshop.model.RepairOrder;
 import se.kth.iv1350.bikeshop.model.RepairOrder.RepairOrderState;
-
+import se.kth.iv1350.bikeshop.util.Logger;
 
 /**
  * Handles all calls between the view and the model and integration layers.
@@ -27,7 +27,13 @@ public class Controller {
     private RepairOrder currentRepairOrder;
     private DiagnosticReportDTO currentDiagnosticReport;
 
-
+    /**
+     * Logger client that prints messages to the logger
+     */
+    private Logger logger;
+    public void setLogger(Logger logger) {
+        this.logger = logger;
+    }
 
     /**
      * Creates a new instance of the controller.
@@ -47,13 +53,14 @@ public class Controller {
      * @return The found {@link CustomerDTO}, or {@code null} if no match exists.
      * @throws PhoneNr
      */
-    public CustomerDTO searchCustomer(String phoneNr) throws PhoneNrNotFoundException, DatabaseFailureException{
+    public CustomerDTO searchCustomer(String phoneNr) throws PhoneNrNotFoundException{ //OBS throws DatabasFailureEsception was removed! cannot throw and catch in same method (checked exception)
         try{  
-            return registryCreator.getCustomerRegistry().findCustomer(phoneNr);
+            return registryCreator.getCustomerRegistry().findCustomer(phoneNr, 1);
         }catch(UnknownPhoneNrException e){
             System.out.println(e.getMessage());
             return null;
         }catch(DatabaseFailureException i){
+            logger.log("Database failure code: " + 1);
             System.out.println(i.getMessage());
             return null;
         }
