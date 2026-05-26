@@ -57,12 +57,10 @@ public class Controller {
         try{  
             return registryCreator.getCustomerRegistry().findCustomer(phoneNr, 1);
         }catch(UnknownPhoneNrException e){
-            System.out.println(e.getMessage());
-            return null;
+            throw new PhoneNrNotFoundException();
         }catch(DatabaseFailureException i){
             logger.log("Database failure code: " + 1);
             System.out.println(i.getMessage());
-            return null;
         }
     }
 
