@@ -23,6 +23,8 @@ public class RepairOrderDTO {
     private int estimatedCompletionDate;
     private double totalCost;
     private RepairOrderState state;
+    private BikeDTO bikeDTO;
+    private String brand;
     
    
     /**
@@ -35,15 +37,35 @@ public class RepairOrderDTO {
      * @param RepairOrderState                  The current state of the repair order
      */
 
-    public RepairOrderDTO(String repairOrderId, String problemDescription, LocalDate date, int estimatedCompletitionDate, RepairOrderState state) {
+    public RepairOrderDTO(String repairOrderId, String problemDescription, LocalDate date, int estimatedCompletitionDate, RepairOrderState state, BikeDTO bikeDTO) {
         this.repairOrderId = repairOrderId;         // Store the unique order ID
         this.problemDescription = problemDescription; // Store the reported problem
         this.date = date;
         this.estimatedCompletionDate = estimatedCompletitionDate;
         this.state = state;
+        this.bikeDTO = bikeDTO;
 
     }
+    //getter for observer impl
+    public RepairOrderDTO getRepairOrderDTO(){
 
+        //variables from bikeDTO...
+        //BikeDTO bikeDTO = new bikeDTO;
+        //bike
+
+        return new RepairOrderDTO(repairOrderId, problemDescription, date, estimatedCompletionDate, state, bikeDTO);
+    }
+
+    //ta bort?
+    public BikeDTO getBikeDTO(){
+        return bikeDTO;
+    }
+    //ta bort?
+    public String getBrand(){
+        brand = bikeDTO.getBrand();
+        return brand;
+    }
+ 
     /** @return The unique repair order ID. */
     public String getRepairOrderId(){
         return repairOrderId;
@@ -69,5 +91,5 @@ public class RepairOrderDTO {
     public RepairOrderState getState() {
         return state;
     }
-
+ 
 }

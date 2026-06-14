@@ -1,6 +1,8 @@
 package se.kth.iv1350.bikeshop.controller; 
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import se.kth.iv1350.bikeshop.dto.BikeDTO;
 import se.kth.iv1350.bikeshop.dto.CustomerDTO;
@@ -16,8 +18,6 @@ import se.kth.iv1350.bikeshop.model.Observer;
 import se.kth.iv1350.bikeshop.model.RepairOrder;
 import se.kth.iv1350.bikeshop.model.RepairOrder.RepairOrderState;
 import se.kth.iv1350.bikeshop.util.Logger;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Handles all calls between the view and the model and integration layers.
@@ -67,7 +67,7 @@ public class Controller {
       //  this.logger = logger;
 
 //    }
-
+ 
     /**
      * Searches for a customer with the specified phone number. 
      *
@@ -113,6 +113,8 @@ public class Controller {
         for (Observer observer : observers) {
             currentRepairOrder.addObserver(observer);
         }
+
+        //a copy of the repairorder in the shape of a DTO is created here
         RepairOrderDTO dto = currentRepairOrder.getRepairOrderDTO();
         registryCreator.getRepairOrderRegistry().saveRepairOrder(dto);
         return dto;
@@ -130,7 +132,9 @@ public class Controller {
         DiagnosticReportDTO reportDTO = new DiagnosticReportDTO(report);
         currentDiagnosticReport = reportDTO;
         currentRepairOrder.setStateReadyForApproval();
-        return reportDTO;
+        RepairOrderDTO dto = currentRepairOrder.getRepairOrderDTO();
+        registryCreator.getRepairOrderRegistry().saveRepairOrder(dto);
+        return reportDTO;    
     }
 
 
@@ -146,6 +150,9 @@ public class Controller {
     public RepairTaskDTO addRepairTask(String name, String description, double cost) {
         RepairTaskDTO task = new RepairTaskDTO(name, description, cost);
         currentRepairOrder.addRepairTask(task);
+        currentRepairOrder.setStateReadyForApproval();
+        RepairOrderDTO dto = currentRepairOrder.getRepairOrderDTO();
+        registryCreator.getRepairOrderRegistry().saveRepairOrder(dto);
         return task;
     }
 
@@ -175,6 +182,7 @@ public class Controller {
      */
     public String getProblemDescription(RepairOrderDTO dto){
         //takes repirOrderDTO as parameter in order to access problemdescr.
+        
         return dto.getProblemDescription();
     }
 
