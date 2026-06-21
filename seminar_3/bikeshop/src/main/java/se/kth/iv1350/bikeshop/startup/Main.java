@@ -27,8 +27,6 @@ public class Main {
         Printer         printer    = new Printer();
         Logger          logger     = new FileLogger();
         Controller      controller = new Controller(registry, printer);
-        controller.addObserver(new RepairOrderView());
-        controller.addObserver(new RepairOrderLogger());
         View            view       = new View(controller);
         controller.setLogger(logger);
         view.setLogger(logger);
