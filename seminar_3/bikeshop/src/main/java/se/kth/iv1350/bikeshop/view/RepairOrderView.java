@@ -10,6 +10,6 @@ public class RepairOrderView implements Observer {
     @Override
     public void repairOrderStateHasChanged(se.kth.iv1350.bikeshop.dto.RepairOrderDTO repairOrder) {
         System.out.println("\n[REPAIR ORDER UPDATE] Order: " + repairOrder.getRepairOrderId()
-                + " | State: " + repairOrder.getState());
+                + " | State: " + repairOrder.getState()) ;
     }
 }

@@ -30,4 +30,5 @@ public class RepairOrderLogger implements Observer {
             System.err.println("Failed to write to repair order log: " + e.getMessage());
         }
     }
+
 }
