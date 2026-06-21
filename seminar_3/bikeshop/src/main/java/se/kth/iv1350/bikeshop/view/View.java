@@ -54,6 +54,8 @@ public class View {
      */
     public void run() {
 
+        System.out.println("--- Step 1: Search for customer ---");
+
         CustomerDTO customer; 
 
         try{controller.searchCustomer("0701234567");
@@ -76,7 +78,7 @@ public class View {
         System.out.println("Customer phone : " + customer.getPhoneNr());
         System.out.println("Customer email : " + customer.getEmail());
  
-        System.out.println("\n--- Step 2: Search for bike ---");
+        System.out.println("\n--- Step 2: Search for bike ---"); 
         BikeDTO bike = controller.searchBike("0701234567");
         System.out.println("Bike brand  : " + bike.getBrand());
         System.out.println("Bike model  : " + bike.getModel());
@@ -89,8 +91,7 @@ public class View {
         System.out.println("Order ID    : " + order.getRepairOrderId());
         System.out.println("Problem     : " + order.getProblemDescription());
         System.out.println("Date        : " + currentDate);
-
-        
+      
         System.out.println("\n--- Step 4: Add Diagnostic Report ---");
         DiagnosticReportDTO report = controller.addDiagnosticReport("Battery has faulty cells");
         System.out.println("Diagnostic Report : " + report.getDiagnosticReport());
@@ -102,7 +103,7 @@ public class View {
         System.out.println("Description : " + task1.getDescription());
         System.out.println("Cost        : " + task1.getCost() + " kr");
 
-        RepairTaskDTO task2 = controller.addRepairTask(
+                RepairTaskDTO task2 = controller.addRepairTask(
                 "Cable inspection", "Inspect and replace faulty cables", 150.0);
         System.out.println("Task added  : " + task2.getName());
         System.out.println("Description : " + task2.getDescription());
@@ -113,7 +114,8 @@ public class View {
         // annat än DTO:er. I den här koden importeras dock både RepairOrder och RepairOrderRegistry.
         //move to registry ?
         controller.setOrderStatus(RepairOrderState.ACCEPTED);
+        
         System.out.println("Order accepted.");
     }
  
-}
+} 

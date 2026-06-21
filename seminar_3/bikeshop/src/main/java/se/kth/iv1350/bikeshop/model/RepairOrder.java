@@ -36,6 +36,8 @@ public class RepairOrder {
     private String repairOrderId;
     private RepairOrderState state;
     private DiagnosticReport diagnosticReport;
+    
+    private BikeDTO bikeDTO;
 
     private RepairOrderDTO repairOrder;
 
@@ -85,7 +87,11 @@ public void updateRepairOrder(String diagnosticReportProblemDescription, List<Re
 
     public RepairOrderDTO getRepairOrderDTO(){
 
-        return new RepairOrderDTO(repairOrderId, ProblemDescription, date, estimatedCompletionDate, state);
+        return new RepairOrderDTO(repairOrderId, ProblemDescription, date, estimatedCompletionDate, state, bikeDTO);
+    }
+
+    public BikeDTO getBikeDTO(){
+           return new BikeDTO(brand, model, serialNr);
     }
         
     /**
@@ -96,7 +102,7 @@ public void updateRepairOrder(String diagnosticReportProblemDescription, List<Re
     public void setStateAccepted() {
         this.state = RepairOrderState.ACCEPTED;
         notifyObserver();
-    }
+    } 
 
     public void setStateRejected() {
         this.state = RepairOrderState.REJECTED;
@@ -119,7 +125,7 @@ public void updateRepairOrder(String diagnosticReportProblemDescription, List<Re
 
     private void notifyObserver(){
         for(Observer obs : repairOrderObservers){
-            obs.repairOrderStateHasChanged(getRepairOrderDTO());
+            obs.repairOrderStateHasChanged(getRepairOrderDTO(), getBikeDTO());
         }
     }
 
@@ -140,5 +146,7 @@ public void updateRepairOrder(String diagnosticReportProblemDescription, List<Re
         notifyObserver();
         return diagnosticReport.addDiagnosticReport(newReport);
     }
+
+    
 
 }
