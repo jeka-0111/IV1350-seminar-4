@@ -1,6 +1,9 @@
 package se.kth.iv1350.bikeshop.view;
 
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import se.kth.iv1350.bikeshop.controller.Controller;
 import se.kth.iv1350.bikeshop.controller.PhoneNrNotFoundException;
@@ -31,6 +34,8 @@ public class View {
      */
     public View(Controller controller) {
         this.controller = controller;
+        controller.addObserver(new RepairOrderView());
+        controller.addObserver(new RepairOrderLogger());
     }
 
     private Logger logger;
@@ -48,7 +53,6 @@ public class View {
      * Prints everything returned by the controller.
      */
     public void run() {
-        System.out.println("--- Step 1: Search for customer ---");
 
         CustomerDTO customer; 
 
@@ -67,6 +71,7 @@ public class View {
             return;
         }
 
+        
         System.out.println("Customer name  : " + customer.getName());
         System.out.println("Customer phone : " + customer.getPhoneNr());
         System.out.println("Customer email : " + customer.getEmail());
