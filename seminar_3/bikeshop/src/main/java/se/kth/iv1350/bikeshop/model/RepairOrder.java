@@ -48,7 +48,7 @@ public class RepairOrder {
         this.repairTasks = new ArrayList<>();
         this.totalCostOfRepairTasks = 0.0;
     
-    }
+    }   
 
 /*     //konstruktor av RO
     public RepairOrder (List<RepairTaskDTO> repairTaskList){
@@ -113,8 +113,8 @@ public void updateRepairOrder(String diagnosticReportProblemDescription, List<Re
     }
     
 
-    public void addObserver(Observer observer){
-        repairOrderObservers.add(observer);
+    public void addObservers(List<Observer> observer){
+        repairOrderObservers.addAll(observer);
     }
 
     private void notifyObserver(){
