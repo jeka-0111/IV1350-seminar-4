@@ -29,7 +29,7 @@ public class Controller {
     private Printer printer;
     private RepairOrder currentRepairOrder;
     private DiagnosticReportDTO currentDiagnosticReport;
-    private final List<Observer> observers = new ArrayList<>();
+    private List<Observer> observers = new ArrayList<>();
     private Logger logger;
 
     /**
@@ -59,14 +59,7 @@ public class Controller {
         this.registryCreator = registryCreator;
         this.printer = printer;
     }
-    /**
-     * ska referera till inparametern i logger
-     * @param logger
-     */
-    //public Controller(Logger logger) {
-      //  this.logger = logger;
 
-//    }
 
     /**
      * Searches for a customer with the specified phone number. 
@@ -110,9 +103,7 @@ public class Controller {
     public RepairOrderDTO createRepairOrder(CustomerDTO customer, BikeDTO bike,
                                             String customersProblemDescription, LocalDate date) {
         currentRepairOrder = new RepairOrder(customer, bike, customersProblemDescription, date);
-        for (Observer observer : observers) {
-            currentRepairOrder.addObserver(observer);
-        }
+        currentRepairOrder.addObservers(observers);
         RepairOrderDTO dto = currentRepairOrder.getRepairOrderDTO();
         registryCreator.getRepairOrderRegistry().saveRepairOrder(dto);
         return dto;
